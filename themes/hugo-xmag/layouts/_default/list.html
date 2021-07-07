@@ -2,10 +2,8 @@
 
 <div class="container">
 <main class="list">
-        {{ $paginator := .Paginate (where .Data.Pages "Section" "!=" "") }}
-        {{ range where $paginator.Pages "Date" "ge" (now.AddDate 0 0 -2) }}
+{{ range where .Site.RegularPages "Date" "ge" (now.AddDate 0 0 -2) }}
 <section class="article-list">
-        
   <h1><a href="{{ .LinkTitle  }}">{{ .Title }}</a></h1>
   <div class="date-author">
     {{ if .Params.author }}<span class="author">{{ partial "author_names.html" . }}</span> / {{ end }}
@@ -32,7 +30,6 @@
 </section>
 {{ end }}
 </main>
-<nav>{{ template "_internal/pagination.html" . }}</nav>
 </div>
 
 {{ partial "footer.html" . }}
